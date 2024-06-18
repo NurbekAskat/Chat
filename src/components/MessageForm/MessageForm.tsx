@@ -35,7 +35,7 @@ const MessageForm = () => {
     };
 
     return (
-        <div>
+        <div className="mb-5">
             <h1>Send Message</h1>
             <form onSubmit={onFormSubmit}>
                 <div>
@@ -47,6 +47,7 @@ const MessageForm = () => {
                             onChange={onChange}
                             value={message.message}
                             required
+                            className="form-control"
                         />
                     </label>
                 </div>
@@ -59,10 +60,11 @@ const MessageForm = () => {
                             onChange={onChange}
                             required
                             value={message.author}
+                            className="form-control"
                         />
                     </label>
                 </div>
-                <button type="submit">Send</button>
+                <button type="submit" className="btn btn-primary mt-3">Send</button>
             </form>
         </div>
     );

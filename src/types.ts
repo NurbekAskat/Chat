@@ -4,8 +4,3 @@ export interface messageType {
     author: string,
     datetime: string
 }
-
-export interface messageFormType {
-    message: string,
-    author: string,
-}

@@ -11,30 +11,34 @@ const App = () => {
     const url = `http://146.185.154.90:8000/messages?datetime=${date}`;
     const response = await fetch(url);
     const data = await response.json();
-    setMessages((prev) => [...prev, data]);
+    if (data.length > 1) {
+      setMessages((prev) => [...prev, ...data]);
+    }
   };
 
   useEffect(() => {
     fetchMessage('');
-    console.log('kkk')
   }, [])
 
   useEffect(() => {
     const interval = setInterval(() => {
       fetchMessage(messages[messages.length - 1].datetime);
-    }, 2000);
-    console.log('VVV')
+      console.log('dsvdsc')
+    }, 3000);
+
     return (
       clearInterval(interval)
     )
-  }, [messages])
+  }, [messages.length])
+
+
 
 
   return (
     <>
-      <div>
-        <MessageList messages={messages} />
+      <div className='container'>
         <MessageForm />
+        <MessageList messages={messages} />
       </div>
     </>
   );

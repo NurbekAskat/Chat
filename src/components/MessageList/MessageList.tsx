@@ -11,11 +11,13 @@ const MessageList: React.FC<Props> = ({ messages }) => {
     return (
         <div>
             <h5>Messages</h5>
-            {
-                messages.map((message) => (
-                    <MessageItem key={message._id} author={message.author} message={message.message} date={message.datetime} />
-                ))
-            }
+            <div className="d-flex flex-column-reverse">
+                {
+                    messages.map((message) => (
+                        <MessageItem key={message._id} message={message} />
+                    ))
+                }
+            </div>
         </div>
     );
 };
