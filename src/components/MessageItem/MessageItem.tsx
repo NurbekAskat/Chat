@@ -6,14 +6,14 @@ interface Props {
     date: string
 }
 
-const MessageItem: React.FC<Props> = ({author, message, date}) => {
-  return (
-    <div>
-      <strong>{author}</strong>
-      <p>{message}</p>
-      <span>{date}</span>
-    </div>
-  );
+const MessageItem: React.FC<Props> = ({ author, message, date }) => {
+    return (
+        <div>
+            <strong>{author}</strong>
+            <p>{message}</p>
+            <span>{date}</span>
+        </div>
+    );
 };
 
 export default MessageItem;

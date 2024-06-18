@@ -1,21 +1,40 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import { messageType } from './types';
 import MessageList from './components/MessageList/MessageList';
+import MessageForm from './components/MessageForm/MessageForm';
 
 const App = () => {
-  const [messages, setMessages] = useState<messageType[]>([
-    {  "_id": "5a3b8af7b96eb02c84d640bd",
-        "message": "Hello, world!",
-        "author": "Admin",
-        "datetime": "2017-12-21T10:20:39.586Z"}
-  ]);
+  const [messages, setMessages] = useState<messageType[]>([]);
+
+  const fetchMessage = async (date: string) => {
+    const url = `http://146.185.154.90:8000/messages?datetime=${date}`;
+    const response = await fetch(url);
+    const data = await response.json();
+    setMessages((prev) => [...prev, data]);
+  };
+
+  useEffect(() => {
+    fetchMessage('');
+    console.log('kkk')
+  }, [])
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      fetchMessage(messages[messages.length - 1].datetime);
+    }, 2000);
+    console.log('VVV')
+    return (
+      clearInterval(interval)
+    )
+  }, [messages])
 
 
   return (
     <>
       <div>
-        <MessageList messages={messages}/>
+        <MessageList messages={messages} />
+        <MessageForm />
       </div>
     </>
   );
